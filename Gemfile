@@ -54,7 +54,7 @@ group :development, :test do
   gem "letter_opener_web", "~> 2.0"
   gem "standard", require: false
   gem "erb_lint", require: false
-
+  gem 'rspec-rails', '~> 6.0.0'
   # Security tooling to
   # gem "brakeman"
   # gem "bundler-audit", github: "rubysec/bundler-audit"
@@ -121,3 +121,5 @@ end
 
 # We recommend using strong migrations when your app is in production
 # gem "strong_migrations", "~> 0.7.6"
+
+gem "factory_bot", "~> 6.2"

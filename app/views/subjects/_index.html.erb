@@ -1,0 +1,6 @@
+<div id="<%= dom_id(subject, :index) %>">
+  <%= turbo_stream_from subject %>
+  <%= render subject %>
+  <%= link_to "View", subject, class: "btn btn-white" %>
+</div>
+
