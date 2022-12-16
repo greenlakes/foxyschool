@@ -3,10 +3,16 @@
     <p class="text-sm font-medium text-gray-500">Body</p>
     <%= question.body %>
   </div>
+
+
   <div class="mb-4">
     <p class="text-sm font-medium text-gray-500">Answer</p>
-    <%= question.answer %>
+    <%= turbo_frame_tag dom_id(question, :reveal) do %>
+      <%= link_to 'show answer', reveal_question_path(question)  %>
+    <% end %>
   </div>
+
+
   <div class="mb-4">
     <p class="text-sm font-medium text-gray-500">Subject</p>
     <%= question.subject.name %>

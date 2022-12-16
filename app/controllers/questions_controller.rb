@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :reveal]
 
   # Uncomment to enforce Pundit authorization
   # after_action :verify_authorized
@@ -14,8 +14,7 @@ class QuestionsController < ApplicationController
   end
 
   # GET /questions/1 or /questions/1.json
-  def show
-  end
+  def show; end
 
   # GET /questions/new
   def new
@@ -26,8 +25,7 @@ class QuestionsController < ApplicationController
   end
 
   # GET /questions/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /questions or /questions.json
   def create
@@ -68,6 +66,8 @@ class QuestionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def reveal; end
 
   private
 
