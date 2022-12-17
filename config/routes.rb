@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   resources :questions do
     member do
       get :reveal
+      get :check_answer
+    end
+
+    collection do
+      get :start_test
     end
   end
   resources :subjects

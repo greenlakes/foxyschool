@@ -6,3 +6,9 @@
     <p>You can customize this page in <code>app/views/dashboard/show.html.erb</code></p>
   </div>
 </div>
+
+<div>
+  <% Subject.all.each do |subject| %>
+    <%= render 'subject', subject: subject %>
+  <% end %>
+</div>
