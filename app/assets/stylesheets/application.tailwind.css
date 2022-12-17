@@ -31,3 +31,13 @@
 @import "flatpickr/dist/flatpickr.css";
 @import "tippy.js/dist/tippy.css";
 @import "tom-select/dist/css/tom-select.css";
+
+@layer components {
+    .btn-danger {
+        @apply bg-red-600 text-white hover:bg-red-700;
+    }
+
+    .btn-success {
+        @apply bg-green-600 text-white hover:bg-green-700;
+    }
+}

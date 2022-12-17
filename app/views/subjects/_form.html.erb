@@ -7,7 +7,7 @@
   </div>
 
   <div>
-    <%= form.button button_text(form.send(:submit_default_value)), class: "btn btn-primary" %>
+    <%= form.button button_text(form.send(:submit_default_value)), class: "btn btn-success" %>
 
     <% if form.object.new_record? %>
       <%= link_to t("cancel"), subjects_path, class: "btn btn-white" %>
