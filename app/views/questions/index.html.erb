@@ -14,7 +14,9 @@
       </div>
     </div>
 
-    <%= link_to t("shared.scaffold.new.title", model: "Question"), new_question_path, class: "btn btn-white" %>
+    <% if current_user&.admin %>
+      <%= link_to t("shared.scaffold.new.title", model: "Question"), new_question_path, class: "btn btn-white" %>
+    <% end %>
   </div>
 
   <%= tag.div id: ("questions" if first_page?), class: "bg-white rounded-md shadow p-6 space-y-8" do %>

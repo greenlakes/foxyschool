@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
+  before_action :authorize_user
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
-
   # Uncomment to enforce Pundit authorization
   # after_action :verify_authorized
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -14,8 +14,7 @@ class SubjectsController < ApplicationController
   end
 
   # GET /subjects/1 or /subjects/1.json
-  def show
-  end
+  def show; end
 
   # GET /subjects/new
   def new
@@ -26,8 +25,7 @@ class SubjectsController < ApplicationController
   end
 
   # GET /subjects/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /subjects or /subjects.json
   def create
@@ -38,7 +36,7 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.save
-        format.html { redirect_to @subject, notice: "Subject was successfully created." }
+        format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
         format.json { render :show, status: :created, location: @subject }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +49,7 @@ class SubjectsController < ApplicationController
   def update
     respond_to do |format|
       if @subject.update(subject_params)
-        format.html { redirect_to @subject, notice: "Subject was successfully updated." }
+        format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { render :show, status: :ok, location: @subject }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,9 +62,17 @@ class SubjectsController < ApplicationController
   def destroy
     @subject.destroy
     respond_to do |format|
-      format.html { redirect_to subjects_url, status: :see_other, notice: "Subject was successfully destroyed." }
+      format.html { redirect_to subjects_url, status: :see_other, notice: 'Subject was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def authorize_user
+    return if current_user&.admin?
+
+    redirect_to subjects_path, notice: 'You have to be an admin to do that.'
   end
 
   private
