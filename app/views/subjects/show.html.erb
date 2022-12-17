@@ -6,7 +6,7 @@
     <h1 class="h3">
       <%= link_to "Subjects", subjects_path, class: "text-black" %>
       <span class="text-gray-400 font-light mx-2">\</span>
-      Subject #<%= @subject.id %>
+      <%= @subject.name %>
     </h1>
     <%= link_to t("edit"), edit_subject_path(@subject), class: "btn btn-white" %>
   </div>
@@ -14,4 +14,13 @@
   <div class="p-8 bg-white rounded shadow">
     <%= render @subject %>
   </div>
+
+<div class='mt-4'>
+  <%= turbo_frame_tag 'start_test' do %>
+    <%= link_to 'Start test', start_test_questions_path, class: 'btn btn-secondary' %>
+  <% end %>
+</div>
+
+
+
 </div>

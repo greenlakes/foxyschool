@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy, :reveal]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :reveal, :check_answer]
 
   # Uncomment to enforce Pundit authorization
   # after_action :verify_authorized
@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: "Question was successfully created." }
+        format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,7 +49,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: "Question was successfully updated." }
+        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -62,12 +62,28 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, status: :see_other, notice: "Question was successfully destroyed." }
+      format.html { redirect_to questions_url, status: :see_other, notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def reveal; end
+
+  def start_test
+    @questions = Question.all
+  end
+  def check_answer
+    @questions = Question.all
+    next_question = @questions.find_by(id: params[:id].to_i + 1)
+
+    if next_question && @question.answer.downcase == params[:answer].downcase
+      redirect_to next_question, notice: 'Correct!'
+    elsif next_question
+      redirect_to next_question, alert: 'Incorrect!'
+    else
+      redirect_to root_path, notice: 'You are done!'
+    end
+  end
 
   private
 
