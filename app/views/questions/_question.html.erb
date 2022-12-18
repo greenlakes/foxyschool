@@ -17,4 +17,12 @@
     <p class="text-sm font-medium text-gray-500">Subject</p>
     <%= question.subject.name %>
   </div>
+
+  <div class="mb-4">
+    <p class="text-sm font-medium text-gray-500">Your answer</p>
+    <%= form_with url: check_answer_question_path(question), method: :get do |form| %>
+      <%= form.text_field :answer %>
+      <%= form.submit "Check", class: 'btn btn-secondary' %>
+    <% end %>
+  </div>
 </div>

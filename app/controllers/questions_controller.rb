@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[show edit update destroy reveal]
   before_action :authenticate_user!, except: %i[index show reveal]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :reveal, :check_answer]
 
   # Uncomment to enforce Pundit authorization
   # after_action :verify_authorized
@@ -75,6 +75,22 @@ class QuestionsController < ApplicationController
   end
 
   def reveal; end
+
+  def start_test
+    @questions = Question.all
+  end
+  def check_answer
+    @questions = Question.all
+    next_question = @questions.find_by(id: params[:id].to_i + 1)
+
+    if next_question && @question.answer.downcase == params[:answer].downcase
+      redirect_to next_question, notice: 'Correct!'
+    elsif next_question
+      redirect_to next_question, alert: 'Incorrect!'
+    else
+      redirect_to root_path, notice: 'You are done!'
+    end
+  end
 
   private
 

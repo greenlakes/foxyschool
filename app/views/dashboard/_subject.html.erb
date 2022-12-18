@@ -1,0 +1,12 @@
+<div class="border border-gray-400 rounded my-8 lg:w-1/2 w-full">
+  <div class="image-placeholder">
+    <svg viewBox="0 0 20 20" width="20" height="20" role="img" aria-labelledby="a3b77y459voi32h6gdenquqkxyeaxiol" class="fill-current text-gray-500 icon-xl"><title id="a3b77y459voi32h6gdenquqkxyeaxiol">Icons/photo</title>
+      <path d="M0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11 9l-3-3-6 6h16l-5-5-2 2zm4-4a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
+
+  </div>
+  <div class="p-6">
+    <h3><%= subject.name %></h3>
+    <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <%= link_to 'View subject', subject_path(subject), class: 'btn btn-primary btn-small' %>
+  </div>
+</div>

@@ -10,13 +10,13 @@ User.create(name: 'Ron Mac', email: 'smartcraft@pm.me', password: 'online', pass
 User.create(name: 'Mike Koala', email: '55577@pm.me', password: '557712', password_confirmation: '557712',
             admin: true, terms_of_service: true)
 
-Subject.create!(name: 'Chemistry', id: 1)
-Subject.create!(name: 'Physics', id: 2)
-Subject.create!(name: 'Biology', id: 3)
+chemistry = Subject.create!(name: 'Chemistry')
+physics = Subject.create!(name: 'Physics')
+biology = Subject.create!(name: 'Biology')
 
-Question.create!(body: 'A solution or liquid with pH value less than 7?', answer: 'Acid', subject_id: 1)
-Question.create!(body: 'A solution or liquid with pH value greater than 7?', answer: 'Base', subject_id: 1)
-Question.create!(body: 'A solution or liquid with pH value equal to 7?', answer: 'Neutral', subject_id: 1)
-Question.create!(body: 'A neutral particle, everything is made of these.', answer: 'Atom', subject_id: 1)
+Question.create!(body: 'A solution or liquid with pH value less than 7?', answer: 'Acid', subject_id: chemistry.id)
+Question.create!(body: 'A solution or liquid with pH value greater than 7?', answer: 'Base', subject_id: chemistry.id)
+Question.create!(body: 'A solution or liquid with pH value equal to 7?', answer: 'Neutral', subject_id: chemistry.id)
+Question.create!(body: 'A neutral particle, everything is made of these.', answer: 'Atom', subject_id: chemistry.id)
 Question.create!(body: 'A substance that cannot be broken down into other substances.',
-                 answer: 'Element', subject_id: 1)
+                 answer: 'Element', subject_id: chemistry.id)
