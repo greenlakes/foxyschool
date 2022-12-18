@@ -11,8 +11,9 @@
         <%= sortable @subjects, :name, "Name", class: "text-gray-700 mr-1" %>
       </div>
     </div>
-
-    <%= link_to t("shared.scaffold.new.title", model: "Subject"), new_subject_path, class: "btn btn-white" %>
+    <% if admin? %>
+      <%= link_to t("shared.scaffold.new.title", model: "Subject"), new_subject_path, class: "btn btn-white" %>
+    <% end %>
   </div>
 
   <%= tag.div id: ("subjects" if first_page?), class: "bg-white rounded-md shadow p-6 space-y-8" do %>

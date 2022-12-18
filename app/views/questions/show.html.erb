@@ -8,7 +8,9 @@
       <span class="text-gray-400 font-light mx-2">\</span>
       Question #<%= @question.id %>
     </h1>
-    <%= link_to t("edit"), edit_question_path(@question), class: "btn btn-white" %>
+    <% if admin? %>
+      <%= link_to t("edit"), edit_question_path(@question), class: "btn btn-white" %>
+    <% end %>
   </div>
 
   <div class="p-8 bg-white rounded shadow">

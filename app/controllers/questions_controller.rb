@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show reveal]
-  before_action :set_question, only: [:show, :edit, :update, :destroy, :reveal, :check_answer]
+  # before_action :authenticate_user!, except: %i[index show reveal]
+  before_action :authorize_user, except: %i[index show]
+  before_action :set_question, only: %i[show edit update destroy reveal check_answer]
 
   # Uncomment to enforce Pundit authorization
   # after_action :verify_authorized

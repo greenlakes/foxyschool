@@ -8,19 +8,18 @@
       <span class="text-gray-400 font-light mx-2">\</span>
       <%= @subject.name %>
     </h1>
-    <%= link_to t("edit"), edit_subject_path(@subject), class: "btn btn-white" %>
+    <% if admin? %>
+      <%= link_to t("edit"), edit_subject_path(@subject), class: "btn btn-white" %>
+    <% end %>
   </div>
 
   <div class="p-8 bg-white rounded shadow">
     <%= render @subject %>
   </div>
 
-<div class='mt-4'>
-  <%= turbo_frame_tag 'start_test' do %>
-    <%= link_to 'Start test', start_test_questions_path, class: 'btn btn-secondary' %>
-  <% end %>
-</div>
-
-
-
+  <div class='mt-4'>
+    <%= turbo_frame_tag 'start_test' do %>
+      <%= link_to 'Start test', start_test_questions_path, class: 'btn btn-secondary' %>
+    <% end %>
+  </div>
 </div>
