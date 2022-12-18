@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :authorize_user
+  before_action :authorize_user, except: %i[index show]
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
   # Uncomment to enforce Pundit authorization
   # after_action :verify_authorized
@@ -65,14 +65,6 @@ class SubjectsController < ApplicationController
       format.html { redirect_to subjects_url, status: :see_other, notice: 'Subject was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  private
-
-  def authorize_user
-    return if current_user&.admin?
-
-    redirect_to subjects_path, notice: 'You have to be an admin to do that.'
   end
 
   private

@@ -54,4 +54,10 @@ class ApplicationController < ActionController::Base
   def require_account
     redirect_to new_user_registration_path unless current_account
   end
+
+  def authorize_user
+    return if current_user&.admin?
+
+    redirect_to subjects_path, notice: 'You have to be an admin to perform this action.'
+  end
 end

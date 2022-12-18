@@ -53,4 +53,8 @@ module ApplicationHelper
   def first_page?
     @pagy.page == 1
   end
+
+  def admin?
+    user_signed_in? && current_user.admin?
+  end
 end
